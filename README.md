@@ -1,122 +1,113 @@
-# ✨ MindMatch | Premium Memory Card Matching Game
+# 🧠 MindMatch — Memory Card Matching Game
 
-MindMatch is a premium, highly responsive, and beautifully designed Memory Card Matching Game built with **React**, **Vite (JavaScript)**, and **Tailwind CSS v4**. It features smooth 3D card-flip animations, three difficulty levels, local high-score tracking, and a custom high-performance canvas-based confetti engine.
+MindMatch is a responsive Memory Card Matching Game built with **React**, **Vite**, and **Tailwind CSS v4**. It includes 3D card-flip animations, three difficulty levels, local high-score tracking, and a lightweight canvas-based confetti effect on the win screen.
 
-The project is structured to deploy seamlessly on **Vercel** with zero configuration.
-
----
-
-## 🚀 Live Demo & Visuals
-
-- **Theme**: Futuristic Dark Glassmorphic Theme (`#030712` background, frosted transparent panels, glowing borders, and modern typography).
-- **Responsive Layout**: Adapts gracefully from large desktop monitors down to 320px mobile screens, with touch-friendly tap targets and auto-sizing grids.
-- **Victory Screen**: Floating success modal with detailed statistics, record badges, and falling particle confetti.
+**🔗 Live Demo:** [https://mind-match-gold.vercel.app/](https://mind-match-gold.vercel.app/)
 
 ---
 
-## 🌟 Core Features
+## Features
 
-1. **Robust Gameplay Engine**:
-   - Shuffles cards using the **Fisher-Yates** algorithm on every start/restart.
-   - Restricts flips to a maximum of 2 cards at a time.
-   - Locks interaction during card comparison delays (~800ms for mismatches) to prevent double-clicking or third-card cheats.
-   - Tracks current moves (1 move = 1 pair attempt) and elapsed time (`mm:ss`).
-
-2. **Adaptive Difficulty Levels**:
-   - **Easy**: 4x4 Grid (16 cards, 8 animal pairs)
-   - **Medium**: 6x4 Grid (24 cards, 12 animal pairs)
-   - **Hard**: 6x6 Grid (36 cards, 18 animal pairs)
-
-3. **Personal Best Tracking (`localStorage`)**:
-   - Persists best scores locally.
-   - Stores **Best Time** and **Fewest Moves** independently per difficulty level.
-   - Highlights new record achievements immediately on the win screen.
-
-4. **Premium Animations & Aesthetics**:
-   - **3D Card Flips**: Uses CSS 3D transforms (`perspective`, `rotateY`, and `backface-visibility`) for realistic card rotations.
-   - **Match Animation**: Employs a physical scale bounce and glowing halo animation (`animate-match`) when a pair matches.
-   - **Celebration Confetti**: A lightweight, self-contained HTML5 Canvas particle system that triggers on victory, rendering falling confetti at 60 FPS without external dependencies.
-   - **Floating Panels**: Smooth animations that breathe life into the glassmorphic panels.
-
-5. **Advanced Mobile Responsiveness**:
-   - Viewport-based sizing (`vmin`/`vw`) ensures the 6x6 hard mode grid fits completely within a mobile portrait screen without vertical or horizontal scrolling.
-   - **Smart Reflow**: The **Medium (6x4)** layout dynamically reflows to a **4x6** grid on mobile portrait screens for an optimized layout.
-   - Standardized `touch-manipulation` attributes ensure zero-latency tap response on iOS/Android.
+- **4x4 / 6x4 / 6x6** grids for Easy / Medium / Hard difficulty
+- Cards shuffle randomly (Fisher–Yates algorithm) on every new game
+- Click to reveal a card; only 2 cards can be flipped at a time
+- Matched pairs stay revealed; mismatches flip back automatically after a short delay
+- Move counter and live timer (mm:ss)
+- "Congratulations! You Won" screen showing final time and total moves
+- Restart button to reshuffle and reset the game
+- Best score (time + moves) saved per difficulty using `localStorage`
+- 3D CSS flip animations and a confetti celebration on win
+- Fully responsive — works on desktop, tablet, and mobile, including the 6x6 grid on small screens
 
 ---
 
-## 🛠️ Project Structure
+## Tech Stack
+
+- React 19 (functional components + hooks: `useState`, `useEffect`, `useCallback`)
+- Vite for build tooling
+- Tailwind CSS v4 for styling
+- Plain HTML5 Canvas for the confetti effect (no extra animation libraries)
+- Deployed on Vercel
+
+---
+
+## Project Structure
 
 ```text
 memory-match-game/
-├── index.html          # HTML Entry point (Google Fonts, SEO Meta Tags)
-├── package.json        # Dependencies (React 19, Vite 8, Tailwind v4)
-├── vite.config.js      # Vite configuration with @tailwindcss/vite plugin
-├── README.md           # Setup & Documentation
+├── index.html
+├── package.json
+├── vite.config.js
+├── README.md
 ├── src/
-│   ├── main.jsx        # App mounting and entry point
-│   ├── App.jsx         # Centralized game coordinator & state management
-│   ├── index.css       # Global styles, Tailwind imports, and custom animations
-│   ├── components/     # Modulized React functional components
-│   │   ├── Board.jsx              # Responsive grid wrapper
-│   │   ├── Card.jsx               # Individual 3D card
-│   │   ├── DifficultySelector.jsx # Game mode selection buttons
-│   │   ├── ScoreBoard.jsx         # Current stats & personal records bar
-│   │   └── WinModal.jsx           # Success overlay & Canvas confetti
-│   └── utils/          # Logic helpers
-│       └── gameAssets.js          # Fisher-Yates shuffler and asset generator
+│   ├── main.jsx
+│   ├── App.jsx                    # Game state: cards, moves, timer, difficulty
+│   ├── index.css
+│   ├── components/
+│   │   ├── Board.jsx               # Renders the grid of cards
+│   │   ├── Card.jsx                # Single card, flip animation
+│   │   ├── DifficultySelector.jsx  # Easy / Medium / Hard buttons
+│   │   ├── ScoreBoard.jsx          # Moves, timer, best score display
+│   │   └── WinModal.jsx            # Win screen + confetti
+│   └── utils/
+│       └── gameAssets.js           # Shuffle logic + card data
 ```
 
 ---
 
-## ⚡ Setup & Installation
+## How It Works (Game Logic)
 
-Follow these steps to run the project locally:
+- **Shuffling:** Each card pair is duplicated and shuffled using Fisher–Yates before every game/restart, so the layout is different each time.
+- **Flip rule:** Clicking a card flips it face-up. Once 2 cards are face-up, further clicks are ignored until the comparison resolves.
+- **Matching:** If the 2 flipped cards match, they're marked permanently matched. If not, both flip back after ~800ms.
+- **Moves:** The move counter increments once per pair comparison (not per click).
+- **Timer:** Starts on the first card flip and stops the moment the last pair is matched.
+- **Best score:** On a win, the current time/moves are compared against the stored best for that difficulty in `localStorage`, and updated if it's a new record.
 
-### 1. Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) (v18+ recommended) installed.
+---
 
-### 2. Install Dependencies
-Navigate to the project root and run:
+## Running Locally
+
+### Prerequisites
+[Node.js](https://nodejs.org/) v18 or higher.
+
+### Install
 ```bash
 npm install
 ```
 
-### 3. Start Development Server
-Launch the hot-reloading development server:
+### Development server
 ```bash
 npm run dev
 ```
-Open your browser and navigate to the local URL (usually `http://localhost:5173`).
+Open the local URL shown in the terminal (usually `http://localhost:5173`).
 
-### 4. Build for Production
-Compile a highly optimized production bundle:
+### Production build
 ```bash
 npm run build
 ```
-This outputs a clean, ready-to-deploy static website in the `dist/` folder.
+Outputs a static, deployable site to `dist/`.
 
-### 5. Preview Production Build
-Run a local server to inspect the compiled production build:
+### Preview the production build locally
 ```bash
 npm run preview
 ```
 
 ---
 
-## ☁️ Deployment on Vercel
+## Deployment
 
-This project is fully optimized for **Vercel** with zero additional configuration:
-- Vercel automatically detects the **Vite** build tool.
-- It will run `npm run build` and serve the compiled `dist/` folder automatically.
+Deployed on Vercel directly from this GitHub repository. Vercel auto-detects the Vite build and runs `npm run build`, serving the `dist/` folder — no extra configuration was needed.
 
-### Deploying via Vercel CLI
-If you have the Vercel CLI installed, deploy instantly by running:
-```bash
-vercel
-```
+To redeploy your own copy:
+1. Push this repo to GitHub.
+2. Import it in the [Vercel Dashboard](https://vercel.com/dashboard) → **Add New → Project**.
+3. Deploy with default settings.
 
-### Deploying via GitHub
-1. Push this project to a GitHub repository.
-2. Go to the [Vercel Dashboard](https://vercel.com/dashboard) and click **Add New > Project**.
-3. Import your repository and click **Deploy**.
+---
+
+## Possible Improvements
+
+- Sound effects on flip/match/win
+- Multiplayer / pass-and-play mode
+- Leaderboard synced across devices instead of per-browser `localStorage`
