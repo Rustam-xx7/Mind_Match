@@ -1,13 +1,5 @@
 import React from 'react';
 
-/**
- * DifficultySelector Component
- * Displays a touch-friendly, glassmorphic button group to select game difficulty.
- * Each difficulty has a distinct gradient indicator and shows its grid dimensions.
- *
- * @param {string} difficulty - Current selected difficulty ('easy', 'medium', 'hard')
- * @param {function} onSelectDifficulty - Callback function when a difficulty is clicked
- */
 export default function DifficultySelector({ difficulty, onSelectDifficulty }) {
   const options = [
     { key: 'easy', label: 'Easy', grid: '4x4', color: 'from-blue-500 to-indigo-500' },
