@@ -97,7 +97,7 @@ export default function WinModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-950/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-950/40 dark:bg-gray-950/80 backdrop-blur-md">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />
 
       <div className="relative z-10 w-full max-w-md glass-panel rounded-[32px] p-6 sm:p-8 text-center shadow-2xl overflow-hidden animate-float">
@@ -110,39 +110,39 @@ export default function WinModal({
           </svg>
         </div>
 
-        <h2 className="font-display font-black text-2xl sm:text-3.5xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-400 mb-2 leading-tight">
+        <h2 className="font-display font-black text-2xl sm:text-3.5xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 dark:from-yellow-300 dark:via-amber-400 dark:to-orange-400 mb-2 leading-tight">
           Congratulations!
         </h2>
-        <p className="text-gray-300 text-sm sm:text-base font-medium mb-6">
+        <p className="text-slate-700 dark:text-gray-300 text-sm sm:text-base font-medium mb-6 transition-colors">
           You matched all pairs and conquered the board!
         </p>
 
-        <div className="bg-white/5 rounded-2xl p-4 mb-6 border border-white/5 flex flex-col gap-3">
+        <div className="bg-slate-100/80 dark:bg-white/5 rounded-2xl p-4 mb-6 border border-slate-200/60 dark:border-white/5 flex flex-col gap-3 transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs sm:text-sm text-gray-400 font-medium">Final Time</span>
+            <span className="text-xs sm:text-sm text-slate-500 dark:text-gray-400 font-medium">Final Time</span>
             <div className="flex items-center gap-2">
               {isNewBestTime && (
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-cyan-500/20 text-cyan-300 rounded-full border border-cyan-500/30 animate-pulse">
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 rounded-full border border-cyan-500/20 dark:border-cyan-500/30 animate-pulse">
                   NEW RECORD!
                 </span>
               )}
-              <span className="font-mono font-bold text-base sm:text-lg text-cyan-300">
+              <span className="font-mono font-bold text-base sm:text-lg text-cyan-600 dark:text-cyan-300">
                 {formatTime(time)}
               </span>
             </div>
           </div>
           
-          <div className="h-[1px] bg-white/5"></div>
+          <div className="h-[1px] bg-slate-200 dark:bg-white/5"></div>
 
           <div className="flex items-center justify-between">
-            <span className="text-xs sm:text-sm text-gray-400 font-medium">Total Moves</span>
+            <span className="text-xs sm:text-sm text-slate-500 dark:text-gray-400 font-medium">Total Moves</span>
             <div className="flex items-center gap-2">
               {isNewBestMoves && (
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-pink-500/20 text-pink-300 rounded-full border border-pink-500/30 animate-pulse">
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-pink-500/10 dark:bg-pink-500/20 text-pink-600 dark:text-pink-300 rounded-full border border-pink-500/20 dark:border-pink-500/30 animate-pulse">
                   NEW RECORD!
                 </span>
               )}
-              <span className="font-mono font-bold text-base sm:text-lg text-pink-300">
+              <span className="font-mono font-bold text-base sm:text-lg text-pink-600 dark:text-pink-300">
                 {moves} moves
               </span>
             </div>

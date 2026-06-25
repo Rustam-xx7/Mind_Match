@@ -14,45 +14,45 @@ export default function ScoreBoard({ moves, time, bestMoves, bestTime, onRestart
         
         <div className="flex flex-row gap-5 sm:gap-6 justify-around w-full sm:w-auto">
           <div className="flex flex-col items-center min-w-[70px]">
-            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold mb-0.5">
+            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-slate-500 dark:text-gray-400 font-bold mb-0.5">
               Time
             </span>
-            <span className="text-xl sm:text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+            <span className="text-xl sm:text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
               {formatTime(time)}
             </span>
           </div>
           
-          <div className="w-[1px] h-8 bg-white/10 self-center"></div>
+          <div className="w-[1px] h-8 bg-slate-200 dark:bg-white/10 self-center"></div>
           
           <div className="flex flex-col items-center min-w-[70px]">
-            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold mb-0.5">
+            <span className="text-[10px] sm:text-xs uppercase tracking-widest text-slate-500 dark:text-gray-400 font-bold mb-0.5">
               Moves
             </span>
-            <span className="text-xl sm:text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+            <span className="text-xl sm:text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400">
               {moves}
             </span>
           </div>
         </div>
 
-        <div className="hidden sm:block w-[1px] h-10 bg-white/10"></div>
+        <div className="hidden sm:block w-[1px] h-10 bg-slate-200 dark:bg-white/10"></div>
 
-        <div className="flex flex-row gap-5 sm:gap-6 justify-around w-full sm:w-auto bg-white/5 rounded-2xl py-2 px-4 border border-white/5">
+        <div className="flex flex-row gap-5 sm:gap-6 justify-around w-full sm:w-auto bg-slate-100/80 dark:bg-white/5 rounded-2xl py-2 px-4 border border-slate-200/60 dark:border-white/5">
           <div className="flex flex-col items-center">
-            <span className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold mb-0.5">
+            <span className="text-[9px] uppercase tracking-wider text-slate-500 dark:text-gray-400 font-semibold mb-0.5">
               Best Time
             </span>
-            <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400">
+            <span className="text-xs sm:text-sm font-mono font-bold text-cyan-600 dark:text-cyan-400">
               {formatTime(bestTime)}
             </span>
           </div>
           
-          <div className="w-[1px] h-6 bg-white/10 self-center"></div>
+          <div className="w-[1px] h-6 bg-slate-200 dark:bg-white/10 self-center"></div>
           
           <div className="flex flex-col items-center">
-            <span className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold mb-0.5">
+            <span className="text-[9px] uppercase tracking-wider text-slate-500 dark:text-gray-400 font-semibold mb-0.5">
               Best Moves
             </span>
-            <span className="text-xs sm:text-sm font-mono font-bold text-pink-400">
+            <span className="text-xs sm:text-sm font-mono font-bold text-pink-600 dark:text-pink-400">
               {bestMoves !== null ? `${bestMoves} moves` : '---'}
             </span>
           </div>
