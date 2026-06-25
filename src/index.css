@@ -30,12 +30,12 @@
 
 /* Premium Glassmorphic Panels */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.08);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border: 1px solid rgba(16, 185, 129, 0.15); /* Soft emerald tinted border */
+  box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dark .glass-panel {
@@ -52,8 +52,8 @@
   }
   50% {
     transform: rotateY(180deg) scale(1.15);
-    box-shadow: 0 12px 24px rgba(139, 92, 246, 0.3);
-    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.3);
+    border-color: rgba(16, 185, 129, 0.5);
   }
   100% {
     transform: rotateY(180deg) scale(1);
@@ -91,13 +91,13 @@ html, body {
 }
 
 body {
-  background-color: #f8fafc; /* slate-50 */
-  color: #0f172a; /* slate-900 */
+  background-color: #f0f5f2; /* Elegant soft pastel sage-green board background */
+  color: #0f1f15; /* Contrast dark slate-green for light mode */
 }
 
 .dark body {
-  background-color: #030712; /* gray-950 */
-  color: #f3f4f6; /* gray-100 */
+  background-color: #030712; /* Dark theme background */
+  color: #f3f4f6; /* White text */
 }
 
 #root {
